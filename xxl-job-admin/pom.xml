@@ -60,10 +60,16 @@
 			<version>${mybatis-spring-boot-starter.version}</version>
 		</dependency>
 		<!-- mysql -->
+<!--		<dependency>-->
+<!--			<groupId>mysql</groupId>-->
+<!--			<artifactId>mysql-connector-java</artifactId>-->
+<!--			<version>${mysql-connector-java.version}</version>-->
+<!--		</dependency>-->
+		<!-- oracle -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector-java.version}</version>
+			<groupId>com.oracle</groupId>
+			<artifactId>ojdbc7</artifactId>
+			<version>${oracle-jdbc.version}</version>
 		</dependency>
 
 		<!-- xxl-job-core -->

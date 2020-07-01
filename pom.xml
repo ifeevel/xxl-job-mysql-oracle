@@ -32,6 +32,7 @@
 
 		<mybatis-spring-boot-starter.version>2.1.2</mybatis-spring-boot-starter.version>
 		<mysql-connector-java.version>8.0.19</mysql-connector-java.version>
+		<oracle-jdbc.version>12.1.0.2</oracle-jdbc.version>
 
 		<slf4j-api.version>1.7.30</slf4j-api.version>
 		<junit.version>4.13</junit.version>
@@ -70,6 +71,12 @@
 			<name>xuxueli</name>
 			<email>931591021@qq.com</email>
 			<url>https://github.com/xuxueli</url>
+		</developer>
+		<developer>
+			<id>zs</id>
+			<name>zs</name>
+			<email>zs@email.fuoshuo.com</email>
+			<url>https://github.com/cj466</url>
 		</developer>
 	</developers>
 
@@ -141,5 +148,13 @@
 			</distributionManagement>
 		</profile>
 	</profiles>
+
+	<repositories>
+		<repository>
+			<id>hand-china</id>
+			<name>hand-china</name>
+			<url>http://nexus.saas.hand-china.com/content/repositories/rdc/</url>
+		</repository>
+	</repositories>
 
 </project>

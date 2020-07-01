@@ -24,6 +24,7 @@ public class JobLogReportHelper {
         return instance;
     }
 
+    private String dataSourceName = "oracle";
 
     private Thread logrThread;
     private volatile boolean toStop = false;
@@ -70,9 +71,14 @@ public class JobLogReportHelper {
 
                             Map<String, Object> triggerCountMap = XxlJobAdminConfig.getAdminConfig().getXxlJobLogDao().findLogReport(todayFrom, todayTo);
                             if (triggerCountMap!=null && triggerCountMap.size()>0) {
-                                int triggerDayCount = triggerCountMap.containsKey("triggerDayCount")?Integer.valueOf(String.valueOf(triggerCountMap.get("triggerDayCount"))):0;
-                                int triggerDayCountRunning = triggerCountMap.containsKey("triggerDayCountRunning")?Integer.valueOf(String.valueOf(triggerCountMap.get("triggerDayCountRunning"))):0;
-                                int triggerDayCountSuc = triggerCountMap.containsKey("triggerDayCountSuc")?Integer.valueOf(String.valueOf(triggerCountMap.get("triggerDayCountSuc"))):0;
+
+                                String triggerDayCountKey = dataSourceName.contains("oracle") ? "TRIGGERDAYCOUNT" : "triggerDayCount";
+                                String triggerDayCountRunningKey = dataSourceName.contains("oracle") ? "TRIGGERDAYCOUNTRUNNING" : "triggerDayCountRunning";
+                                String triggerDayCountSucKey = dataSourceName.contains("oracle") ? "TRIGGERDAYCOUNTSUC" : "triggerDayCountSuc";
+
+                                int triggerDayCount = triggerCountMap.containsKey(triggerDayCountKey)?Integer.valueOf(String.valueOf(triggerCountMap.get(triggerDayCountKey))):0;
+                                int triggerDayCountRunning = triggerCountMap.containsKey(triggerDayCountRunningKey)?Integer.valueOf(String.valueOf(triggerCountMap.get(triggerDayCountRunningKey))):0;
+                                int triggerDayCountSuc = triggerCountMap.containsKey(triggerDayCountSucKey)?Integer.valueOf(String.valueOf(triggerCountMap.get(triggerDayCountSucKey))):0;
                                 int triggerDayCountFail = triggerDayCount - triggerDayCountRunning - triggerDayCountSuc;
 
                                 xxlJobLogReport.setRunningCount(triggerDayCountRunning);
