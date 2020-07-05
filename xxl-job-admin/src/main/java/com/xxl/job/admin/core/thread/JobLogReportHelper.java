@@ -5,10 +5,8 @@ import com.xxl.job.admin.core.model.XxlJobLogReport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,7 +22,17 @@ public class JobLogReportHelper {
         return instance;
     }
 
-    private String dataSourceName = "oracle";
+    private static String dataSourceName;
+
+    static {
+        Properties prop = new Properties();
+        try {
+            prop.load(JobLogReportHelper.class.getResourceAsStream("/application.properties"));
+        } catch (IOException e) {
+            dataSourceName = "";
+        }
+        dataSourceName = prop.getProperty("spring.datasource.driver-class-name");
+    }
 
     private Thread logrThread;
     private volatile boolean toStop = false;
